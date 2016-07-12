@@ -1,0 +1,50 @@
+module.exports=function(grunt){
+grunt.initConfig({
+watch:{
+			jade:{
+				files:['view/**'],
+				options:{
+					livereload:true
+				}
+			},
+			js:{
+				files:['public/js/**','Models/**/*.js','Schemas/**/*.js'],
+				//tasks:['jshint'],//check whether you spell true or not
+				options:{
+					livereload:true
+				}
+			}
+	},
+	nodemon:{
+			dev:{
+				script:'app.js',
+				options:{
+					args:[],
+					ignoredFiles:['README.md','node_modules/**','.DS_Store'],
+					watchedExtensions:['js'],
+					watchedFolder:['./'],
+					debug:true,
+					delayTime:1,
+					env:{
+						PORT:3000
+
+					},
+					cwd:__dirname
+				}
+			}
+		},
+		concurrent:{
+			// miss uglify
+			tasks:['nodemon','watch'],
+			options:{
+				logConcurrentOutput:true
+			}
+
+		}
+});
+grunt.loadNpmTasks('grunt-contrib-watch');
+grunt.loadNpmTasks('grunt-nodemon');
+grunt.loadNpmTasks('grunt-concurrent');
+grunt.option('force',true);
+grunt.registerTask('default',['concurrent']);
+};

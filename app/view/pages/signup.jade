@@ -1,0 +1,16 @@
+extend ../layout
+
+block content
+	.container
+		.row
+			.col-md-5 //- you should put form inside the .col-md-5
+				form(method="post",action="/user/signup/")
+					.form-group
+						label(for="signupName") Username
+						input#signupName.form-control(name="user[name]",type="text")
+					.form-group
+						label(for="signupPassword") Password
+						input#signupPassword.form-control(name="user[password]",type="text")
+					.modal-footer  //- it should be 'modal' not 'model'
+					button.btn.btn-default(type="button",data-dismiss="modal") Close
+					button.btn.btn-default(type="submit") submit

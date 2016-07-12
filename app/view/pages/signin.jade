@@ -1,0 +1,16 @@
+extend ../layout
+
+block content
+	.container
+		.row
+			.col-md-5
+				form(method="post",action="/user/signin/")
+					.form-group
+						label(for="signinName") Username
+						input#signinName.form-control(name="user[name]",type="text")
+					.form-group
+						label(for="signinPassword") Password
+						input#signinPassword.form-control(name="user[password]",type="text")
+					.modal-footer   //- be careful with the indent
+					button.btn.btn-default(type="button",data-dismiss="modal") Close
+					button.btn.btn-default(type="submit") submit
